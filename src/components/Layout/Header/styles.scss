@@ -1,0 +1,51 @@
+@import "../../../styles/abstract/variables";
+
+.app-header {
+     height: 60px;
+     background-color: $purple !important;
+     border-bottom: 1px solid $orange;
+
+     &__logo {
+          margin-top: 30px;
+          background-image: url('../../../../assets/logo.png');
+          width: 5rem;
+          height: 4rem;
+          background-size: 100%;
+     }
+
+     &__navbar {
+
+          &__links {
+               margin-top: 18px !important;
+          }
+
+          &__nav-link {
+               font-weight: bold;
+               border: 1px solid $orange-dark;
+               color: $orange-light !important;
+               border-bottom: 1px solid $orange;
+
+               &.active {
+                    border: 1px solid $orange;
+                    border-bottom: 1px solid $purple-primary;
+                    background-color: $purple-primary;
+                    color: white !important;
+               }
+          }
+
+          &__player {
+               .username {
+                    color: white;
+               }
+
+               .balance {
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    margin-left: 2px;
+                    background: $orange-gradient;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+               }
+          }
+     }
+}

@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./styles/abstract/variables";
+
+.App {
+  text-align: center;
+}
+
+.App-container {
+  background-color: $purple-primary;
+  background-image: url('../assets/background.svg');
+  min-height: 100vh;
+}
