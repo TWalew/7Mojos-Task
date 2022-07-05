@@ -1,0 +1,33 @@
+@import 'styles/abstract/_variables.scss';
+
+.title-bar {
+     background-color: $purple;
+     color: white;
+     border: 2px solid $purple-border;
+     border-left: none;
+     border-right: none;
+
+     .container {
+          display: flex;
+          justify-content: space-between;
+          padding: 1rem;
+     }
+
+     &__filter-button {
+          background-color: $pink-hot;
+          border: none;
+          border-radius: 0;
+          padding: 0 2rem;
+
+          svg {
+               margin-left: 10px;
+          }
+
+          &:hover,
+          &:active,
+          &:focus {
+               background-color: $pink;
+               box-shadow: 0 0 0 0.25rem $pink-hot;
+          }
+     }
+}

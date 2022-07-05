@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import logo from "./logo.svg";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 import pageContext from "./context";
+import { Layout } from "components/Layout";
 import "./App.scss";
-import { Header } from "./components/Layout/Header";
+
+const LivePage = React.lazy(() => import("pages/LivePage"));
+const SlotsPage = React.lazy(() => import("pages/SlotsPage"));
 
 function App() {
 	const { store } = useContext(pageContext);
@@ -10,16 +13,33 @@ function App() {
 	const { loadGames, loadPlayer, player, games } = store;
 
 	useEffect(() => {
-		console.log("render");
-		loadPlayer.request().finally(() => {
-			loadGames.request("USD", "slots");
-		});
+		loadPlayer.request();
 	}, []);
 
 	return (
 		<div className="App">
 			<div className="App-container">
-				<Header prop={""} />
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route
+							index
+							element={
+								<React.Suspense fallback={<>...</>}>
+									<SlotsPage />
+								</React.Suspense>
+							}
+						/>
+						<Route
+							path="live"
+							element={
+								<React.Suspense fallback={<>...</>}>
+									<LivePage />
+								</React.Suspense>
+							}
+						/>
+						<Route path="*" element={<h3>404</h3>} />
+					</Route>
+				</Routes>
 			</div>
 		</div>
 	);

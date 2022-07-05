@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
+import { NavLink } from "react-router-dom";
+import { Navbar, Container, Nav } from "react-bootstrap";
+import getSymbolFromCurrency from "currency-symbol-map";
 import pageContext from "../../../context";
 import { IHeader } from "./types";
 import "./styles.scss";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import getSymbolFromCurrency from "currency-symbol-map";
 
 export const Header: IHeader = observer(() => {
 	const { store } = useContext(pageContext);
@@ -19,24 +20,24 @@ export const Header: IHeader = observer(() => {
 			variant="dark"
 			className="app-header">
 			<Container>
-				<Navbar.Brand href="#home">
+				<Navbar.Brand href="/">
 					<div className="app-header__logo"></div>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse
 					id="responsive-navbar-nav"
 					className="app-header__navbar">
-					<Nav className="m-auto app-header__navbar__links">
-						<Nav.Link
-							className="app-header__navbar__nav-link"
-							href="#live">
+					<Nav className="app-header__navbar__links">
+						<NavLink
+							className="app-header__navbar__nav-link nav-link"
+							to="/live">
 							LIVE CASINO GAMES
-						</Nav.Link>
-						<Nav.Link
-							className="app-header__navbar__nav-link"
-							href="#slots">
+						</NavLink>
+						<NavLink
+							className="app-header__navbar__nav-link nav-link"
+							to="/">
 							SLOT GAMES
-						</Nav.Link>
+						</NavLink>
 					</Nav>
 					<Nav>
 						<div className="app-header__navbar__player">

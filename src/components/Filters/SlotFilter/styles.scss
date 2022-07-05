@@ -1,0 +1,11 @@
+@import 'styles/abstract/variables';
+
+.slot-filter {
+     margin: 10px 15px;
+
+     &__title {
+          font-size: 1.3rem;
+          text-align: left;
+          border-bottom: 2px solid $purple-border;
+     }
+}

@@ -26,8 +26,8 @@
       "src/*": [
         "src/*"
       ],
-      "assets/*": [
-        "assets/*"
+      "components/*": [
+        "components/*"
       ],
     }
   },

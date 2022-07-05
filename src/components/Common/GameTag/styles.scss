@@ -1,0 +1,40 @@
+@import 'styles/abstract/variables';
+
+.game-tag {
+     background-color: $purple-alpha;
+     border: 1px solid $pink-hot;
+     font-size: 0.7rem;
+     font-weight: bold;
+     display: table;
+     margin-inline-start: auto;
+     margin-bottom: 5px;
+     padding: 2px 5px 2px 5px;
+
+     &.lines {
+          .lines-number {
+               background: $orange-gradient;
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+          }
+
+          .lines-text {
+               background: $pink;
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+          }
+     }
+
+     &.tag {
+          .tag0 {
+               background: $green-gradient;
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+          }
+
+          .tag1 {
+               background: $pink;
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+          }
+     }
+}
