@@ -19,7 +19,9 @@ export const TitleBar: ITitleBar = ({ filters, children, classNames }) => {
 					{children}
 					{filters && (
 						<Button
-							className="title-bar__filter-button"
+							className={`title-bar__filter-button ${
+								open ? "opened" : ""
+							}`}
 							onClick={onOpen}>
 							Filters{" "}
 							{open ? (
@@ -33,7 +35,7 @@ export const TitleBar: ITitleBar = ({ filters, children, classNames }) => {
 			</div>
 			{open && (
 				<Container>
-					<div className="filters">{filters}</div>
+					<div className="filters mb-4">{filters}</div>
 				</Container>
 			)}
 		</>

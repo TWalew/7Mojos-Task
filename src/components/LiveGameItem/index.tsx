@@ -1,37 +1,25 @@
-import React from "react";
-import { ILiveGameItem } from "./types";
+import React, { useContext } from "react";
+import { observer } from "mobx-react-lite";
 import HoverVideoPlayer from "react-hover-video-player";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSlash } from "@fortawesome/free-solid-svg-icons";
+import pageContext from "context";
+import { ILiveGameItem } from "./types";
+import { IGame } from "stores/types";
 import "./styles.scss";
-//TODO ask Teodor pn 0886250566
 
-export const LiveGameItem: ILiveGameItem = ({ game, thumbnail }) => {
+export const LiveGameItem: ILiveGameItem = observer(({ game, thumbnail }) => {
+	const { store } = useContext(pageContext);
 	const tags = game?.slotData?.tags;
 	const lines = game?.slotData?.linesCount;
 	const thumb = game?.thumbnails[0];
 
-	const checkImage = (url: string) => {
-		var request = new XMLHttpRequest();
-		var status = 0;
-		request.open("GET", url, true);
-		request.send();
-		request.onload = function () {
-			status = request.status;
-			console.log(status);
-			if (request.status == 200) {
-				//if(statusText == OK)
-				console.log("image exists");
-			} else {
-				console.log("image doesn't exist");
-			}
-		};
+	const openGame = (game: IGame) => {
+		store.openGame(game);
 	};
 
-	checkImage(thumb?.imageUrl);
-
 	return (
-		<div className="live-game">
+		<div className="live-game" onClick={() => openGame(game)}>
 			<HoverVideoPlayer
 				className="player-wrapper"
 				videoSrc={
@@ -65,9 +53,11 @@ export const LiveGameItem: ILiveGameItem = ({ game, thumbnail }) => {
 						icon={faSlash}
 					/>
 					<div className="live-game__details__people__image" />
-					{game?.liveData?.playersCount}
+					<span className="live-game__details__people__count">
+						{game?.liveData?.playersCount}
+					</span>
 				</div>
 			</div>
 		</div>
 	);
-};
+});

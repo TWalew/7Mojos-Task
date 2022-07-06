@@ -14,8 +14,9 @@
      }
 
      &__filter-button {
-          background-color: $pink-hot;
+          background-color: $purple;
           border: none;
+          box-shadow: 0 0 0 0.25rem $pink-hot;
           border-radius: 0;
           padding: 0 2rem;
 
@@ -25,8 +26,9 @@
 
           &:hover,
           &:active,
-          &:focus {
-               background-color: $pink;
+          &:focus,
+          &.opened {
+               background-color: $pink-hot;
                box-shadow: 0 0 0 0.25rem $pink-hot;
           }
      }

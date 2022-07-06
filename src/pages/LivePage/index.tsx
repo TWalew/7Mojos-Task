@@ -18,7 +18,6 @@ const LivePage: ILivePage = observer(() => {
 		}
 	}, [player.currency]);
 
-	console.log(liveGames);
 	return (
 		<div>
 			{liveGames?.map((liveGame, index) => (

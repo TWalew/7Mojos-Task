@@ -1,11 +1,11 @@
-@import "styles/abstract/variables";
+@import "styles/abstract/variables.scss";
 
 .Toastify {
   font-size: 1.6rem;
 
   &__toast {
     &--default {
-      border-left: 5px $blue-regular solid;
+      border-left: 5px $purple-primary solid;
       color: black;
     }
   }

@@ -11,7 +11,6 @@ export const FeaturedGames: IFeaturedGames = observer(() => {
 	const { store } = useContext(pageContext);
 	const { games, player } = store;
 	const featuredGames = games.filter((g) => g.isFeatured);
-	console.log(featuredGames);
 
 	return (
 		<>

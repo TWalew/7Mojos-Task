@@ -96,6 +96,12 @@ export default class GlobalStore {
 		}
 	};
 
+	@action
+	openGame = (game: IGame) => {
+		const url = `${game.clientUrl}?gameToken=${game.token}&operatorToken=${this.operatorToken}&playerToken=${this.playerToken}&host=${game.hostUrl}`;
+		window.open(url, "_blank", "noopener,noreferrer");
+	};
+
 	loadPlayer = new Req(async () => {
 		const res = await PlayerAPI.loadPlayer({
 			playerToken: this.playerToken,

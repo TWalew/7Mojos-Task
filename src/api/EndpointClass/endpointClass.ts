@@ -5,6 +5,7 @@ import * as Helpers from "./helpers";
 import { RefreshTokenError, ExpiredTokenError } from "./errors";
 
 import type { HttpMethod, LooseObject } from "./types";
+import { toast } from "utils/ToastMessage";
 
 export class Endpoint {
 	private method: string;
@@ -125,7 +126,7 @@ export class Endpoint {
 
 	private handleToastMsg() {
 		if (this.flags.hasToastMsg) {
-			// toast(this.notificationMsg);
+			toast(this.notificationMsg);
 		}
 	}
 
