@@ -3,5 +3,4 @@ import type { FC } from "react";
 
 export type ILiveGameItem = FC<{
 	game: IGame;
-	thumbnail?: IThumbnail;
 }>;

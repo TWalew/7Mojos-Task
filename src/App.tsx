@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import pageContext from "./context";
+import { Routes, Route } from "react-router-dom";
+
 import { Layout } from "components/Layout";
+import pageContext from "./context";
 import "./App.scss";
 
 const LivePage = React.lazy(() => import("pages/LivePage"));
@@ -10,7 +11,7 @@ const SlotsPage = React.lazy(() => import("pages/SlotsPage"));
 function App() {
 	const { store } = useContext(pageContext);
 
-	const { loadGames, loadPlayer, player, games } = store;
+	const { loadPlayer } = store;
 
 	useEffect(() => {
 		loadPlayer.request();

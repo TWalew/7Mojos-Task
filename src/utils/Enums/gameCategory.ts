@@ -4,3 +4,10 @@ export enum GameCategory {
 	Dealer,
 	Cards,
 }
+
+export enum GameCategoryText {
+	"Slots",
+	"Live",
+	"Dealer",
+	"Cards",
+}

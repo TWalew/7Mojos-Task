@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
+import { Col, Container, Row } from "react-bootstrap";
+
 import pageContext from "context";
 import { IFeaturedGames } from "./types";
 import { TitleBar } from "components/Shared/TitleBar";
-import { Col, Container, Row } from "react-bootstrap";
-import "./styles.scss";
 import { GameItem } from "components/GameItem";
 
 export const FeaturedGames: IFeaturedGames = observer(() => {
 	const { store } = useContext(pageContext);
-	const { games, player } = store;
+	const { games } = store;
 	const featuredGames = games.filter((g) => g.isFeatured);
 
 	return (

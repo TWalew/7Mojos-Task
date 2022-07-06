@@ -3,15 +3,19 @@
 .live-game {
      position: relative;
      height: 100%;
+     max-height: 180px;
+     border: 10px solid;
+     border-image-slice: 1;
+     border-width: 2px;
+     border-image-source: linear-gradient(to bottom, $orange-light, $pink-hot);
 
      .player-wrapper {
-          min-height: 180px;
+          max-height: 180px;
           max-width: 300px;
      }
 
      &__thumbnail {
           width: 100%;
-          min-height: 180px;
 
           &.default {
                background-image: url('../../../assets/default_thumbnail.png');
@@ -24,10 +28,10 @@
           display: flex;
           position: relative;
           z-index: 1000;
-          bottom: 18%;
+          bottom: 22%;
           justify-content: space-between;
           background-color: #17141f;
-          width: 98.7%;
+          width: 100%;
           margin: auto;
           padding: 0.5rem;
 
@@ -53,6 +57,23 @@
                &__icon {
                     transform: translateY(2px) rotate(70deg);
                }
+          }
+     }
+
+     &__tags {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          z-index: 1000;
+
+          &.big {
+               right: 15px;
+          }
+
+          p {
+               color: white;
+               margin: 0;
+               text-align: right;
           }
      }
 }

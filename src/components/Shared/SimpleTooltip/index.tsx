@@ -1,5 +1,6 @@
 import React, { Children, useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
 import { ISimpleToolTip } from "./types";
 import "./styles.scss";
 

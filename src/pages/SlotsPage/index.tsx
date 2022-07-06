@@ -1,21 +1,32 @@
 import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import pageContext from "context";
-import { ISlotsPage } from "./types";
-import { TitleBar } from "components/Shared/TitleBar";
 import { Container, Row } from "react-bootstrap";
+
+import { TitleBar } from "components/Shared/TitleBar";
 import { GameItem } from "components/GameItem";
 import { FeaturedGames } from "components/FeaturedGames";
 import { SlotFilters } from "components/Filters/SlotFilters";
-// import "./styles.scss";
+import pageContext from "context";
+import { ISlotsPage } from "./types";
 
 const SlotsPage: ISlotsPage = observer(() => {
 	const { store } = useContext(pageContext);
 	const { filteredGames, loadGames, player } = store;
 
+	const req = () => {
+		if (player.currency) {
+			loadGames.request(player.currency, "slots");
+		}
+	};
+
 	useEffect(() => {
-		loadGames.request(player.currency, "slots");
-	}, []);
+		req();
+		const interval = setInterval(() => {
+			req();
+		}, 60 * 1000);
+
+		return () => clearInterval(interval);
+	}, [player.currency]);
 
 	return (
 		<div>

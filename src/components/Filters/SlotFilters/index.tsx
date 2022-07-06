@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import pageContext from "context";
 import { ISlotFilters } from "./types";
 import { SlotFilter } from "../SlotFilter";
@@ -14,6 +14,10 @@ export const SlotFilters: ISlotFilters = observer(() => {
 
 	const getArrFromEnum = (enu: any) => {
 		return Object.keys(enu).filter((k) => isNaN(Number(k)));
+	};
+
+	const onClear = () => {
+		store.clearFilters();
 	};
 
 	return (
@@ -45,6 +49,11 @@ export const SlotFilters: ISlotFilters = observer(() => {
 							</>
 						}
 					/>
+				</Col>
+				<Col sm={1}>
+					<Button className="pink-button m-3" onClick={onClear}>
+						Clear
+					</Button>
 				</Col>
 			</Row>
 		</div>

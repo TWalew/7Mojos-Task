@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import { IGameItem } from "./types";
 import { observer } from "mobx-react-lite";
+
+import pageContext from "context";
 import {
 	SlotGameTag,
 	SlotGameTagText,
 	SlotGameTagTextFeatured,
 } from "utils/Enums/slotGameTag";
+import { IGame } from "stores/types";
 import { GameTag } from "components/Common/GameTag";
 import { SimpleToolTip } from "../Shared/SimpleTooltip";
-import { IGame } from "stores/types";
-import pageContext from "context";
 import "./styles.scss";
 
 export const GameItem: IGameItem = observer(

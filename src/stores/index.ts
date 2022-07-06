@@ -7,6 +7,9 @@ import { Req } from "./Common/Req";
 import { IGame, IPageData, IPlayerData, IPlayerResponse } from "./types";
 
 export default class GlobalStore {
+	private playerToken = "Player777";
+	private operatorToken = "654be709f71140f7aa65dcd8cede80d4";
+
 	@observable player: IPlayerData;
 
 	@observable games: IGame[];
@@ -18,9 +21,6 @@ export default class GlobalStore {
 	@observable tagsFilter: SlotGameTag[];
 
 	@observable linesFilter: string;
-
-	private playerToken = "Player777";
-	private operatorToken = "654be709f71140f7aa65dcd8cede80d4";
 
 	constructor(pageData: IPageData) {
 		this.player = pageData.player.data;
@@ -71,12 +71,16 @@ export default class GlobalStore {
 		const games = [...this.games];
 		const linesArr = this.linesFilter.replace(">", "").split("-");
 		let newGames: IGame[] = [];
-		newGames = games.filter((fg) => {
-			const linesCount = fg?.slotData?.linesCount as number;
-			return linesCount >= +linesArr[0] && linesArr[1]
-				? linesCount <= +linesArr[1]
-				: false;
-		});
+		if (linesArr[0] !== "") {
+			newGames = games.filter((fg) => {
+				const linesCount = fg?.slotData?.linesCount as number;
+				return linesCount >= +linesArr[0] && linesArr[1]
+					? linesCount <= +linesArr[1]
+					: false;
+			});
+		} else {
+			newGames = [...games];
+		}
 		if (this.tagsFilter.length) {
 			this.tagsFilter.forEach((tf) => {
 				newGames = newGames.filter((fg) => {
@@ -88,6 +92,13 @@ export default class GlobalStore {
 		}
 
 		this.filteredGames = [...newGames];
+	};
+
+	@action
+	clearFilters = () => {
+		this.tagsFilter = [];
+		this.linesFilter = "";
+		this.filteredGames = [...this.games];
 	};
 
 	@action

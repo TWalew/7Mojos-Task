@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import pageContext from "context";
 
+import pageContext from "context";
 import { ISlotFilter } from "./types";
 import "./styles.scss";
 

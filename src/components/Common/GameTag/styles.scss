@@ -25,13 +25,16 @@
      }
 
      &.tag {
-          .tag0 {
+
+          .tag0,
+          .tag2 {
                background: $green-gradient;
                -webkit-background-clip: text;
                -webkit-text-fill-color: transparent;
           }
 
-          .tag1 {
+          .tag1,
+          .tag3 {
                background: $pink;
                -webkit-background-clip: text;
                -webkit-text-fill-color: transparent;

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { ITitleBar } from "./types";
-import "./styles.scss";
 import { Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+
+import { ITitleBar } from "./types";
+import "./styles.scss";
 
 export const TitleBar: ITitleBar = ({ filters, children, classNames }) => {
 	const [open, setOpen] = useState(false);
@@ -19,9 +20,7 @@ export const TitleBar: ITitleBar = ({ filters, children, classNames }) => {
 					{children}
 					{filters && (
 						<Button
-							className={`title-bar__filter-button ${
-								open ? "opened" : ""
-							}`}
+							className={`pink-button  ${open ? "opened" : ""}`}
 							onClick={onOpen}>
 							Filters{" "}
 							{open ? (

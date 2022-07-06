@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import getSymbolFromCurrency from "currency-symbol-map";
+
 import pageContext from "../../../context";
 import { IHeader } from "./types";
 import "./styles.scss";

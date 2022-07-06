@@ -1,21 +1,30 @@
 import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { Col, Container, Row } from "react-bootstrap";
+
+import { GameType } from "utils/Enums/gameType";
+import { TitleBar } from "components/Shared/TitleBar";
+import { LiveGameItem } from "components/LiveGameItem";
 import pageContext from "context";
 import { ILivePage } from "./types";
-import { TitleBar } from "components/Shared/TitleBar";
-import { GameType } from "utils/Enums/gameType";
-import { Col, Container, Row } from "react-bootstrap";
-import { LiveGameItem } from "components/LiveGameItem";
-// import "./styles.scss";
 
 const LivePage: ILivePage = observer(() => {
 	const { store } = useContext(pageContext);
 	const { liveGames, loadGames, player } = store;
 
-	useEffect(() => {
+	const req = () => {
 		if (player.currency) {
 			loadGames.request(player.currency, "live");
 		}
+	};
+
+	useEffect(() => {
+		req();
+		const interval = setInterval(() => {
+			req();
+		}, 60 * 100);
+
+		return () => clearInterval(interval);
 	}, [player.currency]);
 
 	return (
