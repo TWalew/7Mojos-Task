@@ -12,6 +12,8 @@ const LivePage: ILivePage = observer(() => {
 	const { store } = useContext(pageContext);
 	const { liveGames, loadGames, player } = store;
 
+	const seconds = 60;
+
 	const req = () => {
 		if (player.currency) {
 			loadGames.request(player.currency, "live");
@@ -22,7 +24,7 @@ const LivePage: ILivePage = observer(() => {
 		req();
 		const interval = setInterval(() => {
 			req();
-		}, 60 * 100);
+		}, seconds * 1000);
 
 		return () => clearInterval(interval);
 	}, [player.currency]);

@@ -13,6 +13,8 @@ const SlotsPage: ISlotsPage = observer(() => {
 	const { store } = useContext(pageContext);
 	const { filteredGames, loadGames, player } = store;
 
+	const seconds = 60;
+
 	const req = () => {
 		if (player.currency) {
 			loadGames.request(player.currency, "slots");
@@ -23,7 +25,7 @@ const SlotsPage: ISlotsPage = observer(() => {
 		req();
 		const interval = setInterval(() => {
 			req();
-		}, 60 * 1000);
+		}, seconds * 1000);
 
 		return () => clearInterval(interval);
 	}, [player.currency]);

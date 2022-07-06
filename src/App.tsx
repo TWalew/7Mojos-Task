@@ -13,8 +13,19 @@ function App() {
 
 	const { loadPlayer } = store;
 
-	useEffect(() => {
+	const seconds = 60;
+
+	const req = () => {
 		loadPlayer.request();
+	};
+
+	useEffect(() => {
+		req();
+		const interval = setInterval(() => {
+			req();
+		}, seconds * 1000);
+
+		return () => clearInterval(interval);
 	}, []);
 
 	return (
