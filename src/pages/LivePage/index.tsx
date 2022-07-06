@@ -57,6 +57,15 @@ const LivePage: ILivePage = observer(() => {
 									</Container>
 								</React.Fragment>
 							))}
+						{!liveGames?.filter(
+							(lg) =>
+								lg.gameType ===
+								(GameTypeLiveOrder[k as any] as any)
+						).length && (
+							<div style={{ color: "white" }}>
+								No games at the moment
+							</div>
+						)}
 					</React.Fragment>
 				))}
 		</div>
