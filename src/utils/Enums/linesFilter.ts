@@ -3,5 +3,4 @@ export enum LinesFilter {
 	"10-25",
 	"25-50",
 	">50",
-	"none",
 }

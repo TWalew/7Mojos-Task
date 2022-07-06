@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import pageContext from "context";
 import { ISlotFilters } from "./types";
 import { SlotFilter } from "../SlotFilter";
-import { BoxFilter } from "../SlotFilter/BoxFilter";
+import { BoxFilter } from "../BoxFilter";
 import { LinesFilter } from "utils/Enums/linesFilter";
 import { SlotGameTagTextFeatured } from "utils/Enums/slotGameTag";
 import "./styles.scss";

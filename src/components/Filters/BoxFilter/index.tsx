@@ -7,7 +7,7 @@ import "./styles.scss";
 
 export const BoxFilter: IBoxFilter = observer(({ enu, isRadio = false }) => {
 	const { store } = useContext(pageContext);
-	const { setLinesFilter, setTagFilter } = store;
+	const { setLinesFilter, setTagFilter, linesFilter, tagsFilter } = store;
 
 	const onFilterByLine = (line: any) => {
 		setLinesFilter(line);
@@ -27,6 +27,11 @@ export const BoxFilter: IBoxFilter = observer(({ enu, isRadio = false }) => {
 						name={isRadio ? "GameLines" : "GameFeatures"}
 						type={isRadio ? "radio" : "checkbox"}
 						id={`inline-${key}-1`}
+						defaultChecked={
+							isRadio
+								? linesFilter === key
+								: tagsFilter.includes(key as any)
+						}
 						onClick={() =>
 							isRadio
 								? onFilterByLine(key)
