@@ -16,11 +16,11 @@ export enum SlotGameTagText {
 }
 
 export enum SlotGameTagTextFeatured {
-	"Free Spins" = 0,
-	"Bonus Game" = 1,
-	"Scatter Pays" = 2,
-	"Gamble" = 3,
-	"Mysteries" = 4,
-	"Wild" = 5,
-	"Fruits" = 6,
+	"Free Spins",
+	"Bonus Game",
+	"Scatter Pays",
+	"Gamble",
+	"Mysteries",
+	"Wild",
+	"Fruits",
 }

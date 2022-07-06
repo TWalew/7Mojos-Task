@@ -5,16 +5,13 @@ import pageContext from "context";
 import { ISlotFilter } from "./types";
 import "./styles.scss";
 
-export const SlotFilter: ISlotFilter = observer(() => {
+export const SlotFilter: ISlotFilter = observer(({ title, filter }) => {
 	const { store } = useContext(pageContext);
 
 	return (
 		<div className="slot-filter">
-			<p className="slot-filter__title">Title</p>
-			<p>filter</p>
-			<p>filter</p>
-			<p>filter</p>
-			<p>filter</p>
+			<p className="slot-filter__title">{title}</p>
+			{filter}
 		</div>
 	);
 });

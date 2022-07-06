@@ -1,0 +1,55 @@
+@import 'styles/abstract/variables';
+
+.live-game {
+     position: relative;
+     height: 100%;
+
+     .player-wrapper {
+          min-height: 180px;
+          max-width: 300px;
+     }
+
+     &__thumbnail {
+          width: 100%;
+          min-height: 180px;
+
+          &.default {
+               background-image: url('../../../assets/default_thumbnail.png');
+               background-size: 100%;
+               min-height: 180px;
+          }
+     }
+
+     &__details {
+          display: flex;
+          position: relative;
+          z-index: 1000;
+          bottom: 18%;
+          justify-content: space-between;
+          background-color: #17141f;
+          width: 98.7%;
+          margin: auto;
+          padding: 0.5rem;
+
+          &__name {
+               color: white;
+               padding: 0 1rem;
+          }
+
+          &__people {
+               color: $purple-text;
+
+               &__image {
+                    background-image: url('../../../assets/players.svg');
+                    background-size: 100%;
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+               }
+
+               &__icon {
+                    transform: rotate(70deg);
+               }
+          }
+     }
+}

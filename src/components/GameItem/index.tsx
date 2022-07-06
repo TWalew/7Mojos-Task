@@ -7,7 +7,7 @@ import {
 	SlotGameTagTextFeatured,
 } from "utils/Enums/slotGameTag";
 import { GameTag } from "components/Common/GameTag";
-import { SimpleToolTip } from "../SimpleTooltip";
+import { SimpleToolTip } from "../Shared/SimpleTooltip";
 
 export const GameItem: IGameItem = ({
 	game,
@@ -40,10 +40,14 @@ export const GameItem: IGameItem = ({
 						tags.map((t: SlotGameTag) =>
 							!isFeatured
 								? SlotGameTagText[t] && (
-										<GameTag tag={SlotGameTagText[t]} />
+										<GameTag
+											key={t}
+											tag={SlotGameTagText[t]}
+										/>
 								  )
 								: SlotGameTagTextFeatured[t] && (
 										<GameTag
+											key={t}
 											tag={SlotGameTagTextFeatured[t]}
 										/>
 								  )

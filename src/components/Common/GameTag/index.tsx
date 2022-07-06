@@ -8,7 +8,9 @@ export const GameTag: IGameTag = ({ lines, tag }) => {
 			{tag && (
 				<>
 					{tag?.split(" ").map((t, index) => (
-						<span className={`tag${index}`}>{t} </span>
+						<span key={t} className={`tag${index}`}>
+							{t}{" "}
+						</span>
 					))}
 				</>
 			)}

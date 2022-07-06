@@ -1,4 +1,4 @@
-import { IGame, IThumbnail } from "./../../../stores/types";
+import { IGame, IThumbnail } from "../../stores/types";
 import type { FC } from "react";
 
 export type IGameItem = FC<{

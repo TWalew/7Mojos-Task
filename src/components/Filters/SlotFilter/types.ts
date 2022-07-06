@@ -1,3 +1,6 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
-export type ISlotFilter = FC<{}>;
+export type ISlotFilter = FC<{
+	title: string;
+	filter: ReactNode;
+}>;

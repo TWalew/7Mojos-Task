@@ -4,19 +4,17 @@ import pageContext from "context";
 import { ISlotsPage } from "./types";
 import { TitleBar } from "components/Shared/TitleBar";
 import { Container, Row } from "react-bootstrap";
-import { GameItem } from "components/Shared/GameItem";
+import { GameItem } from "components/GameItem";
 import { FeaturedGames } from "components/FeaturedGames";
 import { SlotFilters } from "components/Filters/SlotFilters";
 // import "./styles.scss";
 
 const SlotsPage: ISlotsPage = observer(() => {
 	const { store } = useContext(pageContext);
-	const { games, loadGames, player } = store;
+	const { filteredGames, loadGames, player } = store;
 
 	useEffect(() => {
-		if (player) {
-			loadGames.request("USD", "slots");
-		}
+		loadGames.request(player.currency, "slots");
 	}, []);
 
 	return (
@@ -33,8 +31,8 @@ const SlotsPage: ISlotsPage = observer(() => {
 			</TitleBar>
 			<Container>
 				<Row>
-					{games.map((game) => (
-						<div className="col-md-3">
+					{filteredGames.map((game) => (
+						<div key={game.name} className="col-md-3">
 							<GameItem game={game} />
 						</div>
 					))}

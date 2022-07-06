@@ -5,7 +5,7 @@ import { IFeaturedGames } from "./types";
 import { TitleBar } from "components/Shared/TitleBar";
 import { Col, Container, Row } from "react-bootstrap";
 import "./styles.scss";
-import { GameItem } from "components/Shared/GameItem";
+import { GameItem } from "components/GameItem";
 
 export const FeaturedGames: IFeaturedGames = observer(() => {
 	const { store } = useContext(pageContext);
