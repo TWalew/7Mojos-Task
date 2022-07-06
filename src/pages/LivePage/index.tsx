@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Col, Container, Row } from "react-bootstrap";
 
-import { GameType } from "utils/Enums/gameType";
+import { GameType, GameTypeLiveOrder } from "utils/Enums/gameType";
 import { TitleBar } from "components/Shared/TitleBar";
 import { LiveGameItem } from "components/LiveGameItem";
 import pageContext from "context";
@@ -29,20 +29,36 @@ const LivePage: ILivePage = observer(() => {
 
 	return (
 		<div>
-			{liveGames?.map((liveGame, index) => (
-				<React.Fragment key={liveGame.name}>
-					<TitleBar classNames="mb-5">
-						<h3>{GameType[liveGame?.gameType]}</h3>
-					</TitleBar>
-					<Container>
-						<Row>
-							<Col md={3}>
-								<LiveGameItem game={liveGame} />
-							</Col>
-						</Row>
-					</Container>
-				</React.Fragment>
-			))}
+			{Object.keys(GameTypeLiveOrder)
+				.filter((k) => isNaN(Number(k)))
+				.map((k) => (
+					<React.Fragment key={k}>
+						<TitleBar classNames="my-5">
+							<h3>
+								{GameType[GameTypeLiveOrder[k as any] as any]
+									.replace(/([A-Z])/g, " $1")
+									.trim()}
+							</h3>
+						</TitleBar>
+						{liveGames
+							?.filter(
+								(lg) =>
+									lg.gameType ===
+									(GameTypeLiveOrder[k as any] as any)
+							)
+							.map((liveGame) => (
+								<React.Fragment key={liveGame.name}>
+									<Container>
+										<Row>
+											<Col md={3}>
+												<LiveGameItem game={liveGame} />
+											</Col>
+										</Row>
+									</Container>
+								</React.Fragment>
+							))}
+					</React.Fragment>
+				))}
 		</div>
 	);
 });
