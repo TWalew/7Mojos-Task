@@ -1,4 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
+import { LinesFilter } from "utils/Enums/linesFilter";
 import { SlotGameTag, SlotGameTagTextFeatured } from "utils/Enums/slotGameTag";
 import { GameAPI } from "../api/Games";
 import { PlayerAPI } from "../api/Player";
@@ -16,6 +17,8 @@ export default class GlobalStore {
 
 	@observable tagsFilter: SlotGameTag[];
 
+	@observable linesFilter: string;
+
 	private playerToken = "Player777";
 	private operatorToken = "654be709f71140f7aa65dcd8cede80d4";
 
@@ -25,6 +28,7 @@ export default class GlobalStore {
 		this.filteredGames = pageData.games;
 		this.liveGames = pageData.games;
 		this.tagsFilter = [];
+		this.linesFilter = "";
 
 		makeObservable(this);
 	}
@@ -52,48 +56,38 @@ export default class GlobalStore {
 			this.tagsFilter.push(feature);
 		} else {
 			this.tagsFilter.splice(index, 1);
-			this.filteredGames = [...this.games];
 		}
+		this.filterSlots();
 	};
 
-	// TODO fix filters
 	@action
-	setFilteredGamesByLine = (lines: string) => {
+	setLinesFilter = (lines: string) => {
+		this.linesFilter = lines;
+		this.filterSlots();
+	};
+
+	@action
+	filterSlots = () => {
 		const games = [...this.games];
-		const linesArr = lines.replace(">", "").split("-");
-		let newGames = [];
-		if (linesArr.length > 1) {
-			newGames = games.filter((fg) => {
-				const linesCount = fg?.slotData?.linesCount as number;
-				return linesCount >= +linesArr[0] && linesCount <= +linesArr[1];
-			});
-			this.filteredGames = [...newGames];
-		} else {
-			newGames = games.filter((fg) => {
-				const linesCount = fg?.slotData?.linesCount as number;
-				return linesCount > +linesArr[0];
-			});
-			this.filteredGames = [...newGames];
-		}
-	};
-
-	@action
-	setFilteredGamesByFeature = (feature: any) => {
-		this.setTagFilter(feature);
-		const games = [...this.filteredGames];
-		let newGames = [];
+		const linesArr = this.linesFilter.replace(">", "").split("-");
+		let newGames: IGame[] = [];
+		newGames = games.filter((fg) => {
+			const linesCount = fg?.slotData?.linesCount as number;
+			return linesCount >= +linesArr[0] && linesArr[1]
+				? linesCount <= +linesArr[1]
+				: false;
+		});
 		if (this.tagsFilter.length) {
 			this.tagsFilter.forEach((tf) => {
-				newGames = games.filter((fg) => {
+				newGames = newGames.filter((fg) => {
 					return fg.slotData?.tags.includes(
 						+SlotGameTagTextFeatured[tf]
 					);
 				});
-				this.filteredGames = [...newGames];
 			});
-		} else {
-			this.filteredGames = this.games;
 		}
+
+		this.filteredGames = [...newGames];
 	};
 
 	@action

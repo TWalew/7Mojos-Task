@@ -1,21 +1,20 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import pageContext from "context";
-import { IBoxFilter } from "./types";
-import "./styles.scss";
 import { Form } from "react-bootstrap";
-import { LinesFilter } from "utils/Enums/linesFilter";
+import { IBoxFilter } from "./types";
+import pageContext from "context";
+import "./styles.scss";
 
 export const BoxFilter: IBoxFilter = observer(({ enu, isRadio = false }) => {
 	const { store } = useContext(pageContext);
-	const { setFilteredGamesByLine, setFilteredGamesByFeature } = store;
+	const { setLinesFilter, setTagFilter } = store;
 
-	const onFilterByLine = (line: string) => {
-		setFilteredGamesByLine(line);
+	const onFilterByLine = (line: any) => {
+		setLinesFilter(line);
 	};
 
 	const onFilterByFeature = (feature: string) => {
-		setFilteredGamesByFeature(feature);
+		setTagFilter(feature);
 	};
 
 	return (
